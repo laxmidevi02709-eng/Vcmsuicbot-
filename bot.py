@@ -363,13 +363,12 @@ async def cb(_, q: CallbackQuery):
 
 
 # ---------- Stream end -> auto leave ----------
-from pytgcalls.types import Update
-from pytgcalls.types.stream import StreamAudioEnded
+from pytgcalls.types import Update, StreamEnded
 
 
 @calls.on_update()
 async def on_update(_, update: Update):
-    if isinstance(update, StreamAudioEnded):
+    if isinstance(update, StreamEnded):
         try:
             await calls.leave_call(update.chat_id)
         except Exception:
